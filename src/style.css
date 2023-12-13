@@ -24,10 +24,15 @@ body {
 }
 .weather-container ul {
   padding: 0px;
+  display: flex;
+  gap: 2%;
+  flex-direction: column;
 }
 .weather-container li {
   list-style: none;
   border: 1px solid red;
+  width: 200px;
+  height: 50px;
 }
 .city-expanded-container {
   border: 1px solid black;
