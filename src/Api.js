@@ -6,5 +6,4 @@ async function getCityWeather(cityName) {
   const cityWeatherData = await response.json();
   return cityWeatherData;
 }
-
 export { getCityWeather };
