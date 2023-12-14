@@ -12,6 +12,10 @@ body {
 }
 .header {
   display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 .weather-container {
   display: flex;
@@ -37,4 +41,7 @@ body {
 .city-expanded-container {
   border: 1px solid black;
   flex: 3;
+}
+.city-search-bar {
+  height: fit-content;
 }
