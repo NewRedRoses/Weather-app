@@ -1,4 +1,10 @@
+@font-face {
+  font-family: "Futura";
+  src: url("./imgs/futura_medium_bt-webfont.woff");
+}
+
 body {
+  font-family: "Futura";
   background-color: bisque;
   margin: 0px;
   height: 100vh;
