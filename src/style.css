@@ -2,10 +2,12 @@
   font-family: "Futura";
   src: url("./imgs/futura_medium_bt-webfont.woff");
 }
-
+div {
+  font-size: clamp(1rem, 5vw, 1.2rem);
+}
 body {
   font-family: "Futura";
-  background-color: bisque;
+  background-color: #ecf0f1;
   margin: 0px;
   height: 100vh;
 }
@@ -26,6 +28,8 @@ body {
 .weather-container {
   display: flex;
   height: 100%;
+  width: 100%;
+  justify-content: center;
 }
 .cities-container {
   display: flex;
@@ -45,10 +49,14 @@ body {
   height: 50px;
 }
 .city-expanded-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 200px;
+  width: 300px;
   padding: 30px;
   border-radius: 40px;
-  background-color: burlywood;
-  flex: 3;
+  background-color: #bdc3c7;
 }
 .city-search-bar {
   height: fit-content;
