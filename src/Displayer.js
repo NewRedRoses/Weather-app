@@ -8,9 +8,18 @@ function displayAllCities() {
     citiesContainer.appendChild(cityContainter);
   });
 }
-async function displayWeatherDataToPanel(weatherResponse) {
-  let weatherData = await weatherResponse;
+async function displayCityDataToPanel(weatherResponse) {
+  try {
+    let weatherData = await weatherResponse;
+    console.log(weatherData);
+    displayLocationData(weatherData);
+    displayWeatherData(weatherData);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+function displayLocationData(weatherData) {
   const cityNameContainer = document.querySelector(".city-name");
   cityNameContainer.textContent = weatherData.location.name;
 
@@ -20,5 +29,13 @@ async function displayWeatherDataToPanel(weatherResponse) {
   const cityCountryContainer = document.querySelector(".city-country");
   cityCountryContainer.textContent = weatherData.location.country;
 }
+function displayWeatherData(weatherData) {
+  const cityConditionContainer = document.querySelector(".city-condition");
+  cityConditionContainer.textContent = weatherData.current.condition.text;
 
-export { displayAllCities, displayWeatherDataToPanel };
+  const cityNameContainer = document.querySelector(".city-temperature");
+  // add option for celcius as well
+  cityNameContainer.textContent = weatherData.current.temp_f + "°";
+}
+
+export { displayAllCities, displayCityDataToPanel };
