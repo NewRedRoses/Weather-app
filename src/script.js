@@ -2,7 +2,7 @@ import "./style.css";
 import { displayAllCities, displayCityDataToPanel } from "./Displayer.js";
 import { getCityWeatherPromise } from "./Api.js";
 
-displayAllCities();
+//displayAllCities();
 let searchedCity = "";
 
 const searchCityInput = document.querySelector(".search-city-input");
