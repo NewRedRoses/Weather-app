@@ -14,6 +14,7 @@ async function displayCityDataToPanel(weatherResponse) {
     console.log(weatherData);
     displayLocationData(weatherData);
     displayWeatherData(weatherData);
+    displayExtraData(weatherData);
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +22,7 @@ async function displayCityDataToPanel(weatherResponse) {
 
 function displayLocationData(weatherData) {
   const cityNameContainer = document.querySelector(".city-name");
-  cityNameContainer.textContent = weatherData.location.name;
+  cityNameContainer.textContent = weatherData.location.name + ",";
 
   const cityRegionContainer = document.querySelector(".city-region");
   cityRegionContainer.textContent = weatherData.location.region;
@@ -30,12 +31,18 @@ function displayLocationData(weatherData) {
   cityCountryContainer.textContent = weatherData.location.country;
 }
 function displayWeatherData(weatherData) {
+  const conditionIcon = document.createElement("img");
+  //conditionIcon.setAttribute("src",  weatherData.current.condition.icon;)
+
   const cityConditionContainer = document.querySelector(".city-condition");
   cityConditionContainer.textContent = weatherData.current.condition.text;
 
   const cityNameContainer = document.querySelector(".city-temperature");
   // add option for celcius as well
   cityNameContainer.textContent = weatherData.current.temp_f + "°";
+}
+function displayExtraData(weatherData) {
+  const propsToUse = ["humidity", "precip_in", "vis_miles"];
 }
 
 export { displayAllCities, displayCityDataToPanel };
