@@ -1,6 +1,6 @@
 import "./style.css";
-import displayAllCities from "./Displayer.js";
-import { getCityWeather } from "./Api.js";
+import { displayAllCities, displayCityDataToPanel } from "./Displayer.js";
+import { getCityWeatherPromise } from "./Api.js";
 
 displayAllCities();
 let searchedCity = "";
@@ -11,6 +11,8 @@ searchCityInput.addEventListener("change", (e) => {
   e.preventDefault();
   searchedCity = e.target.value;
   console.log(searchedCity);
-  let test = getCityWeather(searchedCity);
-  console.log(test);
+  let weatherObject = getCityWeatherPromise(searchedCity).catch((err) => {
+    console.log(err);
+  });
+  displayCityDataToPanel(weatherObject);
 });
