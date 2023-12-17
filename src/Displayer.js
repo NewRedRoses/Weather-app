@@ -60,6 +60,7 @@ function displayForecastWeatherData(weatherData) {
 function createHourForecast(currentHour, parentContainer, condition, temp_f) {
   // time -> condition -> temperature
   const hourForecastContainer = document.createElement("div");
+  hourForecastContainer.classList.add("forecast-hour");
   hourForecastContainer.classList.add(`hour-${currentHour}`);
 
   const hourTitle = document.createElement("div");
