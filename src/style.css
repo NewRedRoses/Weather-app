@@ -52,13 +52,11 @@ body {
 .city-expanded-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  min-height: 225px;
   min-width: 200px;
-  width: fit-content;
-  min-height: 200px;
-  height: fit-content;
-  /* height: 200px; */
-  /* width: 300px; */
+  max-width: 450px;
+  max-height: 400px;
   padding: 30px;
   border-radius: 40px;
   background-color: #ecf0f1;
