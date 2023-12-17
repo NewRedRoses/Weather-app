@@ -68,6 +68,20 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+.city-sun-container {
+  display: flex;
+  gap: 20px;
+}
+.city-today-sunrise,
+.city-today-sunset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sunrise-title,
+.sunset-title {
+  font-weight: 600;
+}
 .city-search-bar {
   height: fit-content;
 }
