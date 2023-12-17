@@ -42,6 +42,8 @@ function displayForecastWeatherData(weatherData) {
   // Dereferencing the data
   const weatherDataToday = weatherData.forecast.forecastday[0];
   const astroDataToday = weatherDataToday.astro;
+  const hourlyForecastToday = weatherDataToday.hour;
+  console.log(hourlyForecastToday);
 
   // Sunrise
   const todaySunriseTitle = document.querySelector(".sunrise-title");
@@ -53,5 +55,46 @@ function displayForecastWeatherData(weatherData) {
   todaySunsetTitle.textContent = "Sunset" + ": ";
   const todaySunsetValue = document.querySelector(".sunset-value");
   todaySunsetValue.textContent = astroDataToday.sunset;
+  displayHourlyForecast(hourlyForecastToday, 6);
+}
+function createHourForecast(currentHour, parentContainer, condition, temp_f) {
+  // time -> condition -> temperature
+  const hourForecastContainer = document.createElement("div");
+  hourForecastContainer.classList.add(`hour-${currentHour}`);
+
+  const hourTitle = document.createElement("div");
+  hourTitle.textContent = currentHour;
+  hourTitle.classList.add("hour-value");
+  hourForecastContainer.appendChild(hourTitle);
+
+  const hourCondition = document.createElement("div");
+  hourCondition.textContent = condition;
+  hourCondition.classList.add("hour-condition");
+  hourForecastContainer.appendChild(hourCondition);
+
+  const hourTemp = document.createElement("div");
+  hourTemp.textContent = temp_f + "°";
+  hourTemp.classList.add("hour-tempf");
+  hourForecastContainer.appendChild(hourTemp);
+
+  parentContainer.appendChild(hourForecastContainer);
+}
+function displayHourlyForecast(forecastData, numOfHoursToShow) {
+  const parentContainer = document.querySelector(
+    ".city-hourly-forecast-container",
+  );
+  const d = new Date();
+  const irlHour = d.getHours();
+  const maxHoursToShow = irlHour + numOfHoursToShow;
+  for (let hour = irlHour; hour < maxHoursToShow; hour++) {
+    const currentHour = forecastData[hour];
+    console.log(hour);
+    createHourForecast(
+      hour,
+      parentContainer,
+      currentHour.condition.text,
+      currentHour.temp_f,
+    );
+  }
 }
 export { displayAllCities, displayCityDataToPanel };
