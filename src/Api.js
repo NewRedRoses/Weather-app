@@ -14,7 +14,7 @@ async function getCityWeatherPromise(cityName) {
 async function getCityWeatherForecastPromise(cityName) {
   try {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&=${cityName}`,
+      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cityName}`,
       { mode: "cors" },
     );
     const cityForecastData = await response.json();
