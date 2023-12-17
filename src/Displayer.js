@@ -9,7 +9,6 @@ function displayAllCities() {
     citiesContainer.appendChild(cityContainter);
   });
 }
-const locationPropsToUse = ["name", "country"];
 async function displayCityDataToPanel(weatherResponse) {
   try {
     let weatherData = await weatherResponse;
@@ -19,15 +18,6 @@ async function displayCityDataToPanel(weatherResponse) {
   } catch (error) {
     console.log(error);
   }
-}
-function createDivWithClassName(className) {
-  const desiredDiv = document.createElement("div");
-  desiredDiv.classList.add(className);
-}
-
-function displayDataToQuery(apiResponse, objectToUse, propToUse, queryClass) {
-  const container = document.querySelector("." + queryClass);
-  container.textContent = apiResponse[objectToUse][propToUse];
 }
 function displayLocationData(weatherData) {
   const cityNameContainer = document.querySelector(".city-name");
@@ -48,4 +38,20 @@ function displayCurrentWeatherData(weatherData) {
   cityTempFContainer.textContent = weatherData.current.temp_f + "°";
 }
 
+function displayForecastWeatherData(weatherData) {
+  // Dereferencing the data
+  const weatherDataToday = weatherData.forecast.forecastday[0];
+  const astroDataToday = weatherDataToday.astro;
+
+  // Sunrise
+  const todaySunriseTitle = document.querySelector(".sunrise-title");
+  todaySunriseTitle.textContent = "Sunrise" + ": ";
+  const todaySunriseValue = document.querySelector(".sunrise-value");
+  todaySunriseValue.textContent = astroDataToday.sunrise;
+  // Sunset
+  const todaySunsetTitle = document.querySelector(".sunset-title");
+  todaySunsetTitle.textContent = "Sunset" + ": ";
+  const todaySunsetValue = document.querySelector(".sunset-value");
+  todaySunsetValue.textContent = astroDataToday.sunset;
+}
 export { displayAllCities, displayCityDataToPanel };
