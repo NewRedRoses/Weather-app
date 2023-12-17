@@ -1,3 +1,4 @@
+// To be removed eventually
 const listOfCities = ["Newark", "Trenton", "Jersey City", "Hoboken", "NYC"];
 
 function displayAllCities() {
@@ -8,18 +9,26 @@ function displayAllCities() {
     citiesContainer.appendChild(cityContainter);
   });
 }
+const locationPropsToUse = ["name", "country"];
 async function displayCityDataToPanel(weatherResponse) {
   try {
     let weatherData = await weatherResponse;
-    console.log(weatherData);
     displayLocationData(weatherData);
-    displayWeatherData(weatherData);
-    displayExtraData(weatherData);
+    displayCurrentWeatherData(weatherData);
+    displayForecastWeatherData(weatherData);
   } catch (error) {
     console.log(error);
   }
 }
+function createDivWithClassName(className) {
+  const desiredDiv = document.createElement("div");
+  desiredDiv.classList.add(className);
+}
 
+function displayDataToQuery(apiResponse, objectToUse, propToUse, queryClass) {
+  const container = document.querySelector("." + queryClass);
+  container.textContent = apiResponse[objectToUse][propToUse];
+}
 function displayLocationData(weatherData) {
   const cityNameContainer = document.querySelector(".city-name");
   cityNameContainer.textContent = weatherData.location.name + ",";
@@ -30,19 +39,13 @@ function displayLocationData(weatherData) {
   const cityCountryContainer = document.querySelector(".city-country");
   cityCountryContainer.textContent = weatherData.location.country;
 }
-function displayWeatherData(weatherData) {
-  const conditionIcon = document.createElement("img");
-  //conditionIcon.setAttribute("src",  weatherData.current.condition.icon;)
-
+function displayCurrentWeatherData(weatherData) {
   const cityConditionContainer = document.querySelector(".city-condition");
   cityConditionContainer.textContent = weatherData.current.condition.text;
 
-  const cityNameContainer = document.querySelector(".city-temperature");
+  const cityTempFContainer = document.querySelector(".city-temp_f");
   // add option for celcius as well
-  cityNameContainer.textContent = weatherData.current.temp_f + "°";
-}
-function displayExtraData(weatherData) {
-  const propsToUse = ["humidity", "precip_in", "vis_miles"];
+  cityTempFContainer.textContent = weatherData.current.temp_f + "°";
 }
 
 export { displayAllCities, displayCityDataToPanel };
