@@ -15,9 +15,17 @@ async function displayCityDataToPanel(weatherResponse) {
     displayLocationData(weatherData);
     displayCurrentWeatherData(weatherData);
     displayForecastWeatherData(weatherData);
+    // console.log(weatherData);
   } catch (error) {
     console.log(error);
   }
+}
+function displayWeatherIcon(iconUrl) {
+  const weatherIconContainer = document.querySelector(".weather-icon");
+  weatherIconContainer.innerHTML = "";
+  const weatherIcon = document.createElement("img");
+  weatherIcon.setAttribute("src", iconUrl);
+  weatherIconContainer.appendChild(weatherIcon);
 }
 function displayLocationData(weatherData) {
   const cityNameContainer = document.querySelector(".city-name");
@@ -43,7 +51,9 @@ function displayForecastWeatherData(weatherData) {
   const weatherDataToday = weatherData.forecast.forecastday[0];
   const astroDataToday = weatherDataToday.astro;
   const hourlyForecastToday = weatherDataToday.hour;
-  console.log(hourlyForecastToday);
+  const iconUrl = "https:" + weatherData.current.condition.icon;
+  console.log(iconUrl);
+  displayWeatherIcon(iconUrl);
 
   // Sunrise
   const todaySunriseTitle = document.querySelector(".sunrise-title");
