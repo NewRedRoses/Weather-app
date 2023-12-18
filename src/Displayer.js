@@ -80,22 +80,31 @@ function createHourForecast(currentHour, parentContainer, condition, temp_f) {
 
   parentContainer.appendChild(hourForecastContainer);
 }
-function displayHourlyForecast(forecastData, numOfHoursToShow) {
+function displayHourlyForecast(forecastData) {
   const parentContainer = document.querySelector(
     ".city-hourly-forecast-container",
   );
   const d = new Date();
   const irlHour = d.getHours();
-  const maxHoursToShow = irlHour + numOfHoursToShow;
-  for (let hour = irlHour; hour < maxHoursToShow; hour++) {
+  for (let hour = irlHour; hour < forecastData.length; hour++) {
     const currentHour = forecastData[hour];
-    console.log(hour);
+    let hourIn12format = convert24to12(hour);
     createHourForecast(
-      hour,
+      hourIn12format,
       parentContainer,
       currentHour.condition.text,
       currentHour.temp_f,
     );
   }
+}
+function convert24to12(hour) {
+  if (hour < 0 || hour > 23) {
+    return "Invalid hour input";
+  }
+
+  let ampm = hour < 12 ? "AM" : "PM";
+  let formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+
+  return `${formattedHour}${ampm}`;
 }
 export { displayAllCities, displayCityDataToPanel };
