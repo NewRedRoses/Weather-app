@@ -52,7 +52,6 @@ function displayForecastWeatherData(weatherData) {
   const astroDataToday = weatherDataToday.astro;
   const hourlyForecastToday = weatherDataToday.hour;
   const iconUrl = "https:" + weatherData.current.condition.icon;
-  console.log(iconUrl);
   displayWeatherIcon(iconUrl);
 
   // Sunrise
